@@ -7,30 +7,35 @@ import {
   FaUserAlt,
 } from 'react-icons/fa';
 import { formatDate, formatEventDistance } from 'utils';
-import css from './Event.module.css';
+import {
+  EventChip,
+  EventContainer,
+  EventInfo,
+  EventTitle,
+} from './Event.styled';
 
 function Event({ name, location, speaker, type, timeStart, timeEnd }) {
   return (
-    <div className={css.event}>
-      <h2 className={css.title}>{name}</h2>
-      <p className={css.info}>
-        <FaMapMarkerAlt className={css.icon} size={iconSizes.sm} />
+    <EventContainer>
+      <EventTitle>{name}</EventTitle>
+      <EventInfo>
+        <FaMapMarkerAlt size={iconSizes.sm} />
         {location}
-      </p>
-      <p className={css.info}>
-        <FaUserAlt className={css.icon} size={iconSizes.sm} />
+      </EventInfo>
+      <EventInfo>
+        <FaUserAlt size={iconSizes.sm} />
         {speaker}
-      </p>
-      <p className={css.info}>
-        <FaCalendarAlt className={css.icon} size={iconSizes.sm} />
+      </EventInfo>
+      <EventInfo>
+        <FaCalendarAlt size={iconSizes.sm} />
         {formatDate(timeStart)}
-      </p>
-      <p className={css.info}>
-        <FaClock className={css.icon} size={iconSizes.sm} />
+      </EventInfo>
+      <EventInfo>
+        <FaClock size={iconSizes.sm} />
         {formatEventDistance(timeStart, timeEnd)}
-      </p>
-      <span className={`${css.chip} ${css[type]}`}>{type}</span>
-    </div>
+      </EventInfo>
+      <EventChip eventType={type}>{type}</EventChip>
+    </EventContainer>
   );
 }
 
